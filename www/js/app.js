@@ -41,6 +41,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         controller: 'LandingCtrl'
       }
     }
+  })
+
+  .state('app.results', {
+    url: '/results',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/results.html',
+        controller: 'ResultsCtrl'
+      }
+    }
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/landing');

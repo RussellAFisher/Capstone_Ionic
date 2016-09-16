@@ -22,29 +22,19 @@ angular.module('starter.controllers', [])
   // };
 })
 
-.controller('LandingCtrl', function($scope, $stateParams, $http, $state) {
-  //   var posOptions = {
-  //     timeout: 10000,
-  //     enableHighAccuracy: true
-  //   };
-  //   $cordovaGeolocation
-  //     .getCurrentPosition(posOptions)
-  //     .then(function(position) {
-  //         var lat = position.coords.latitude;
-  //         var long = position.coords.longitude;
-  //       },
-  //       function(err) {
-  //         // error
-  //       });
+.controller('ResultsCtrl', function($scope, $stateParams, $http, $state) {
   $scope.search = function() {
     var onSuccess = function(position) {
       var lat = position.coords.latitude;
       var long = position.coords.longitude;
+      $scope.lat = lat;
+      $scope.long = long;
       var URL = 'https://fathomless-thicket-83996.herokuapp.com/geocode/json?lat=' + lat + '&lng=' + long;
       $http.get(URL).then(function(result) {
-        $scope.resultsJSON = result.data;
-        $scope.lat = lat;
-        $scope.long = long;
+        var stringifyIt = JSON.stringify(result.data);
+        var replaceErrant = stringifyIt.replace("SearchResults:searchresults", "SearchResults");
+        var reJSON = JSON.parse(replaceErrant);
+        $scope.resultsJSON = reJSON.SearchResults.response.results.result.address.street;
       });
       // alert('Latitude: ' + position.coords.latitude + '\n' +
       //   'Longitude: ' + position.coords.longitude + '\n' +
@@ -64,8 +54,25 @@ angular.module('starter.controllers', [])
       enableHighAccuracy: true
     });
   };
+})
 
-  // $state.go('results', {
-  //
-  // });
+.controller('LandingCtrl', function($scope, $stateParams, $http, $state) {
+
+  $scope.goToResults = function() {
+    $state.go('app.results');
+  };
+  //   var posOptions = {
+  //     timeout: 10000,
+  //     enableHighAccuracy: true
+  //   };
+  //   $cordovaGeolocation
+  //     .getCurrentPosition(posOptions)
+  //     .then(function(position) {
+  //         var lat = position.coords.latitude;
+  //         var long = position.coords.longitude;
+  //       },
+  //       function(err) {
+  //         // error
+  //       });
+
 });

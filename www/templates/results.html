@@ -1,14 +1,11 @@
-<ion-view view-title="Landing">
+<ion-view view-title="Results" ng-init="search()">
   <ion-content>
     <ion-list>
       <ion-item>
-        <button ng-click="goToResults()" class="button button-block button-royal">Search by GPS</button>
-      </ion-item>
-      <ion-item>
         <div>This is where GPS should appear:</div>
-        <p>{{resultsJSON}}</p>
         <p>{{lat}}</p>
         <p>{{long}}</p>
+        <p>{{resultsJSON}}</p>
       </ion-item>
 
     </ion-list>
