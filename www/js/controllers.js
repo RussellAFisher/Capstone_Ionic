@@ -31,26 +31,29 @@ angular.module('starter.controllers', [])
       $scope.long = long;
       var URL = 'https://fathomless-thicket-83996.herokuapp.com/geocode/json?lat=' + lat + '&lng=' + long;
       $http.get(URL).then(function(result) {
-        var stringifyIt = JSON.stringify(result.data);
-        var replaceErrant = stringifyIt.replace("SearchResults:searchresults", "SearchResults");
-        var reJSON = JSON.parse(replaceErrant);
-        $scope.resultsJSON = reJSON.SearchResults.response.results.result.address.street;
+        $scope.rawr = result.data.SearchResults;
+        var address = result.data.SearchResults.response.results.result.address.street;
+        var city = result.data.SearchResults.response.results.result.address.city;
+        var state = result.data.SearchResults.response.results.result.address.state;
+        $scope.address = (address + ' ' + city + ', ' + state);
+        var imageDiv = angular.element(document.querySelector('#image'));
+        imageDiv.append('<img style="-webkit-user-select: none" src="https://maps.googleapis.com/maps/api/streetview?size=375x375&amp;location=' + $scope.address + '&amp;key=AIzaSyAdHCKzz0HaCkqDeutlhY7w1TWNTDEA9aY">');
+        $scope.builtYear = result.data.SearchResults.response.results.result.yearBuilt;
+        $scope.lotSize = result.data.SearchResults.response.results.result.lotSizeSqFt;
+        $scope.sqFoot = result.data.SearchResults.response.results.result.finishedSqFt;
+        $scope.bathrooms = result.data.SearchResults.response.results.result.bathrooms;
+        $scope.bedrooms = result.data.SearchResults.response.results.result.bedrooms;
+        $scope.estimate = result.data.SearchResults.response.results.result.zestimate.amount.$t;
       });
-      // alert('Latitude: ' + position.coords.latitude + '\n' +
-      //   'Longitude: ' + position.coords.longitude + '\n' +
-      //   'Accuracy: ' + position.coords.accuracy + '\n' +
-      //   'Timestamp: ' + position.timestamp + '\n');
     };
 
-    // onError Callback receives a PositionError object
-    //
     function onError(error) {
       alert('code: ' + error.code + '\n' +
         'message: ' + error.message + '\n');
     }
 
     navigator.geolocation.getCurrentPosition(onSuccess, onError, {
-      timeout: 10000,
+      timeout: 3000,
       enableHighAccuracy: true
     });
   };
@@ -61,18 +64,4 @@ angular.module('starter.controllers', [])
   $scope.goToResults = function() {
     $state.go('app.results');
   };
-  //   var posOptions = {
-  //     timeout: 10000,
-  //     enableHighAccuracy: true
-  //   };
-  //   $cordovaGeolocation
-  //     .getCurrentPosition(posOptions)
-  //     .then(function(position) {
-  //         var lat = position.coords.latitude;
-  //         var long = position.coords.longitude;
-  //       },
-  //       function(err) {
-  //         // error
-  //       });
-
 });

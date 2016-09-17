@@ -1,13 +1,26 @@
 <ion-view view-title="Results" ng-init="search()">
   <ion-content>
     <ion-list>
+        <h3> {{address}}</h3>
+        <h4> Estimated value: ${{estimate}}</h4>
       <ion-item>
-        <div>This is where GPS should appear:</div>
-        <p>{{lat}}</p>
-        <p>{{long}}</p>
-        <p>{{resultsJSON}}</p>
+        <div id="image"></div>
       </ion-item>
-
+      <ion-item>
+        <h2>Built in: {{builtYear}}</h2>
+      </ion-item>
+      <ion-item>
+        <h2>Lot size: {{lotSize}}sq feet</h2>
+      </ion-item>
+      <ion-item>
+        <h2>House size: {{sqFoot}}sq feet</h2>
+      </ion-item>
+      <ion-item>
+        <h2>Bathrooms: {{bathrooms}}</h2>
+      </ion-item>
+      <ion-item>
+        <h2>Bedrooms: {{bedrooms}}</h2>
+      </ion-item>
     </ion-list>
   </ion-content>
 </ion-view>
