@@ -9,17 +9,23 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
-  // Create the login modal that we will use later
-  // $ionicModal.fromTemplateUrl('templates/login.html', {
-  //   scope: $scope
-  // }).then(function(modal) {
-  //   $scope.modal = modal;
-  // });
+  $scope.loginData = {};
+
+  $ionicModal.fromTemplateUrl('templates/login.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
 
   // Triggered in the login modal to close it
-  // $scope.closeLogin = function() {
-  //   $scope.modal.hide();
-  // };
+  $scope.closeLogin = function() {
+    $scope.modal.hide();
+  };
+
+  // Open the login modal
+  $scope.login = function() {
+    $scope.modal.show();
+  };
 })
 
 .controller('ResultsCtrl', function($scope, $stateParams, $http, $state) {
@@ -59,9 +65,15 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('LandingCtrl', function($scope, $stateParams, $http, $state) {
+.controller('LandingCtrl', function($scope, $ionicHistory, $state) {
 
   $scope.goToResults = function() {
-    $state.go('app.results');
+    $ionicHistory.clearCache().then(function() {
+      $state.go('app.results');
+    });
+  };
+
+  $scope.searchAddress = function() {
+
   };
 });
