@@ -65,6 +65,30 @@ angular.module('starter.controllers', [])
   };
 })
 
+.controller('AddressResultsCtrl', function($scope, $stateParams, $http, $state) {
+  $scope.showForm = 1;
+  $scope.searchAddress = function() {
+    $scope.showForm = 0;
+    var street = $scope.searchAddress.street.replace(/\s/g, '+');
+    var URL = 'https://fathomless-thicket-83996.herokuapp.com/address/json?street=' + street + '&city=' + $scope.searchAddress.city + '&state=' + $scope.searchAddress.state;
+    $http.get(URL).then(function(result) {
+      alert(result.data);
+      var address = result.data.SearchResults.response.results.result.address.street;
+      var city = result.data.SearchResults.response.results.result.address.city;
+      var state = result.data.SearchResults.response.results.result.address.state;
+      $scope.addressSearch = (address + ' ' + city + ', ' + state);
+      var imageDivAddress = angular.element(document.querySelector('#imageAddress'));
+      imageDivAddress.append('<img style="-webkit-user-select: none" src="https://maps.googleapis.com/maps/api/streetview?size=375x375&amp;location=' + $scope.addressSearch + '&amp;key=AIzaSyAdHCKzz0HaCkqDeutlhY7w1TWNTDEA9aY">');
+      $scope.addressBuiltYear = result.data.SearchResults.response.results.result.yearBuilt;
+      $scope.addressLotSize = result.data.SearchResults.response.results.result.lotSizeSqFt;
+      $scope.addressSqFoot = result.data.SearchResults.response.results.result.finishedSqFt;
+      $scope.addressBathrooms = result.data.SearchResults.response.results.result.bathrooms;
+      $scope.addressBedrooms = result.data.SearchResults.response.results.result.bedrooms;
+      $scope.addressEstimate = result.data.SearchResults.response.results.result.zestimate.amount.$t;
+    });
+  };
+})
+
 .controller('LandingCtrl', function($scope, $ionicHistory, $state) {
 
   $scope.goToResults = function() {
@@ -72,8 +96,7 @@ angular.module('starter.controllers', [])
       $state.go('app.results');
     });
   };
-
-  $scope.searchAddress = function() {
-
+  $scope.searchByAddress = function() {
+    $state.go('app.resultsAddress');
   };
 });
