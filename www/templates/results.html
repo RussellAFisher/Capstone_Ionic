@@ -1,8 +1,16 @@
-<ion-view  cache-view="false" view-title="Results">
+<ion-view cache-view="false" view-title="Results">
   <ion-content>
     <ion-list>
-        <h3> {{address}}</h3>
-        <h4> Estimated value: ${{estimate}}</h4>
+      <div class="row">
+        <div class="col text-left">
+          <h3> {{address}}</h3>
+          <h4> Estimated value: ${{estimate}}</h4>
+        </div>
+        <div class="col text-right">
+          <button ng-show="starClicked" id="star" class="button ion-android-star button-royal" ng-click="click()"></button>
+          <button ng-hide="starClicked" id="star" class="button ion-android-star button-positive" ng-click="click()"></button>
+        </div>
+      </div>
       <ion-item>
         <div id="image"></div>
       </ion-item>
@@ -20,6 +28,9 @@
       </ion-item>
       <ion-item>
         <h2>Bedrooms: {{bedrooms}}</h2>
+      </ion-item>
+      <ion-item>
+        <h4>{{lat}}, {{long}}</h4>
       </ion-item>
     </ion-list>
   </ion-content>

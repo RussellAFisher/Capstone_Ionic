@@ -19,9 +19,16 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ResultsCtrl', function($scope, $stateParams, $http, $state, $ionicLoading) {
+  $scope.starClicked = 1;
+  $scope.click = function() {
+    if ($scope.starClicked == 1) {
+      $scope.starClicked = 0;
+    } else {
+      $scope.starClicked = 1;
+    }
+  };
   $ionicLoading.show();
   $scope.$on('$ionicView.enter', function() {
-    // alert("entered view");
     var onSuccess = function(position) {
       var lat = position.coords.latitude;
       var long = position.coords.longitude;
@@ -55,13 +62,18 @@ angular.module('starter.controllers', [])
       enableHighAccuracy: true
     });
   });
-  // $scope.search = function() {
-  //   alert('searching');
-  // };
 })
 
 .controller('AddressResultsCtrl', function($scope, $stateParams, $http, $state, $ionicLoading) {
   $scope.showForm = 1;
+  $scope.starClicked2 = 1;
+  $scope.click2 = function() {
+    if ($scope.starClicked2 == 1) {
+      $scope.starClicked2 = 0;
+    } else {
+      $scope.starClicked2 = 1;
+    }
+  };
   $scope.searchAddress = function() {
     $ionicLoading.show();
     var street = $scope.searchAddress.street.replace(/\s/g, '+');
@@ -74,7 +86,7 @@ angular.module('starter.controllers', [])
       var state = result.data.SearchResults.response.results.result.address.state;
       $scope.addressSearch = (address + ' ' + city + ', ' + state);
       var imageDivAddress = angular.element(document.querySelector('#imageAddress'));
-      imageDivAddress.append('<img style="-webkit-user-select: none" src="https://maps.googleapis.com/maps/api/streetview?size=375x375&amp;location=' + $scope.addressSearch + '&amp;key=AIzaSyAdHCKzz0HaCkqDeutlhY7w1TWNTDEA9aY">');
+      imageDivAddress.append('<img style="-webkit-user-select: none" src="https://maps.googleapis.com/maps/api/streetview?size=375x375&amp;location=' + $scope.addressSearch + '&amp;key=AIzaSyCMMSXM_tmUW5ssFigrBJGU-HXyB958gOA">');
       $scope.addressBuiltYear = result.data.SearchResults.response.results.result.yearBuilt;
       $scope.addressLotSize = result.data.SearchResults.response.results.result.lotSizeSqFt;
       $scope.addressSqFoot = result.data.SearchResults.response.results.result.finishedSqFt;

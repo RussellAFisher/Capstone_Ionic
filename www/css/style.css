@@ -1,1 +1,6 @@
-/* Empty. Add your own CSS if you like */
+.item-select select
+{
+    right: auto;
+    padding: 5px 45px 8px 0px;
+    direction: ltr;
+}
