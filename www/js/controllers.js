@@ -1,16 +1,6 @@
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
-
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-
-  $scope.loginData = {};
-
   $ionicModal.fromTemplateUrl('templates/login.html', {
     scope: $scope
   }).then(function(modal) {
@@ -28,8 +18,10 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('ResultsCtrl', function($scope, $stateParams, $http, $state) {
-  $scope.search = function() {
+.controller('ResultsCtrl', function($scope, $stateParams, $http, $state, $ionicLoading) {
+  $ionicLoading.show();
+  $scope.$on('$ionicView.enter', function() {
+    // alert("entered view");
     var onSuccess = function(position) {
       var lat = position.coords.latitude;
       var long = position.coords.longitude;
@@ -37,7 +29,7 @@ angular.module('starter.controllers', [])
       $scope.long = long;
       var URL = 'https://fathomless-thicket-83996.herokuapp.com/geocode/json?lat=' + lat + '&lng=' + long;
       $http.get(URL).then(function(result) {
-        $scope.rawr = result.data.SearchResults;
+        $ionicLoading.hide();
         var address = result.data.SearchResults.response.results.result.address.street;
         var city = result.data.SearchResults.response.results.result.address.city;
         var state = result.data.SearchResults.response.results.result.address.state;
@@ -59,20 +51,24 @@ angular.module('starter.controllers', [])
     }
 
     navigator.geolocation.getCurrentPosition(onSuccess, onError, {
-      timeout: 3000,
+      timeout: 5000,
       enableHighAccuracy: true
     });
-  };
+  });
+  // $scope.search = function() {
+  //   alert('searching');
+  // };
 })
 
-.controller('AddressResultsCtrl', function($scope, $stateParams, $http, $state) {
+.controller('AddressResultsCtrl', function($scope, $stateParams, $http, $state, $ionicLoading) {
   $scope.showForm = 1;
   $scope.searchAddress = function() {
-    $scope.showForm = 0;
+    $ionicLoading.show();
     var street = $scope.searchAddress.street.replace(/\s/g, '+');
     var URL = 'https://fathomless-thicket-83996.herokuapp.com/address/json?street=' + street + '&city=' + $scope.searchAddress.city + '&state=' + $scope.searchAddress.state;
     $http.get(URL).then(function(result) {
-      alert(result.data);
+      $scope.showForm = 0;
+      $ionicLoading.hide();
       var address = result.data.SearchResults.response.results.result.address.street;
       var city = result.data.SearchResults.response.results.result.address.city;
       var state = result.data.SearchResults.response.results.result.address.state;
