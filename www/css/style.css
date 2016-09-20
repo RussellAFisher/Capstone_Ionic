@@ -1,13 +1,22 @@
-/*@font-face {
+@font-face {
   font-family: "Quicksand";
-  src: url("../fonts/Quicksand-Regular.ttf")
-}*/
+  src: url("../fonts/Quicksand-Regular.woff") format('woff');
+}
+
+@font-face {
+  font-family: "Artifika";
+  src: url("../fonts/Artifika-Regular.woff") format('woff');
+}
 
 .item-select select
 {
     right: auto;
     padding: 5px 45px 8px 0px;
     direction: ltr;
+}
+
+h3, h2 {
+  font-family: Quicksand;
 }
 
 #starFav {
@@ -20,9 +29,10 @@
 }
 
 .center {
-    margin-left: 35vw;
-    margin-top: 4vw;
-    font-family: Quicksand;
+    margin-left: 18vw;
+    font-size: 4em;
+    font-weight: bold;
+    font-family: Artifika;
 }
 
 .search {
@@ -34,11 +44,16 @@
   width: 90vw;
   margin-left: 5vw;
   color: white;
+  font-family: Quicksand;
+  text-align: center;
+  color: white;
 }
 
 .landing {
   background-image: url(../img/background.jpeg);
-  background-size: 100vh;
+  /*background-size: 100vh;*/
+  background-size: cover;
+  background-position: top;
 }
 .landIt{
   background-color: hsla(180, 0%, 62%, .75);
