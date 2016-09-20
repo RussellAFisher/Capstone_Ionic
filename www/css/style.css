@@ -1,6 +1,36 @@
+/*@font-face {
+  font-family: "Quicksand";
+  src: url("../fonts/Quicksand-Regular.ttf")
+}*/
+
 .item-select select
 {
     right: auto;
     padding: 5px 45px 8px 0px;
     direction: ltr;
+}
+
+.center {
+    margin-left: 35vw;
+    margin-top: 4vw;
+    font-family: Quicksand;
+}
+
+.search {
+  width: 90vw;
+  margin-left: 5vw;
+}
+
+.pitch {
+  width: 90vw;
+  margin-left: 5vw;
+  color: white;
+}
+
+.landing {
+  background-image: url(../img/background.jpeg);
+  background-size: 100vh;
+}
+.landIt{
+  background-color: hsla(180, 0%, 62%, .75);
 }
