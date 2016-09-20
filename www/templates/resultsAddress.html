@@ -1,4 +1,4 @@
-<ion-view>
+<ion-view view-title=" ">
   <ion-content ng-show="showForm">
     <ion-item>
       <span>Search by Street Address</span>
@@ -80,13 +80,13 @@
       <div class = "row">
         <div class="col text-left">
           <h3> {{addressSearch}}</h3>
-          <h4> Estimated value: ${{addressEstimate}}</h4>
         </div>
         <div class="col text-right">
-          <button ng-show="starClicked2" id="star" class="button ion-android-star button-royal" ng-click="click2()"></button>
-          <button ng-hide="starClicked2" id="star" class="button ion-android-star button-positive" ng-click="click2()"></button>
+          <button ng-show="starClicked2" id="starUnfav" class="button ion-android-star button-royal" ng-click="click2()"></button>
+          <button ng-hide="starClicked2" id="starFav" class="button ion-android-star button-royal" ng-click="click2()"></button>
         </div>
       </div>
+      <h3> Estimated value: ${{addressEstimate}}</h3>
       <ion-item>
         <div id="imageAddress"></div>
       </ion-item>

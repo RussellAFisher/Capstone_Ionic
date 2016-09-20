@@ -10,6 +10,15 @@
     direction: ltr;
 }
 
+#starFav {
+  color: gold;
+  font-size: 2.5em;
+}
+
+#starUnfav {
+  font-size: 2.5em;
+}
+
 .center {
     margin-left: 35vw;
     margin-top: 4vw;

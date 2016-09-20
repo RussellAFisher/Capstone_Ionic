@@ -42,7 +42,7 @@ angular.module('starter.controllers', [])
         var state = result.data.SearchResults.response.results.result.address.state;
         $scope.address = (address + ' ' + city + ', ' + state);
         var imageDiv = angular.element(document.querySelector('#image'));
-        imageDiv.append('<img style="-webkit-user-select: none" src="https://maps.googleapis.com/maps/api/streetview?size=375x375&amp;location=' + $scope.address + '&amp;key=AIzaSyAdHCKzz0HaCkqDeutlhY7w1TWNTDEA9aY">');
+        imageDiv.append('<img style="-webkit-user-select: none" src="https://maps.googleapis.com/maps/api/streetview?size=375x375&amp;location=' + $scope.address + '&amp;key=AIzaSyCMMSXM_tmUW5ssFigrBJGU-HXyB958gOA">');
         $scope.builtYear = result.data.SearchResults.response.results.result.yearBuilt;
         $scope.lotSize = result.data.SearchResults.response.results.result.lotSizeSqFt;
         $scope.sqFoot = result.data.SearchResults.response.results.result.finishedSqFt;
@@ -97,12 +97,27 @@ angular.module('starter.controllers', [])
   };
 })
 
+.controller('FavoritesCtrl', function($scope, $state) {
+  $scope.starClicked = 1;
+  $scope.click = function() {
+    if ($scope.starClicked == 1) {
+      $scope.starClicked = 0;
+    } else {
+      $scope.starClicked = 1;
+    }
+  };
+
+})
+
 .controller('LandingCtrl', function($scope, $ionicHistory, $state) {
 
   $scope.goToResults = function() {
     $ionicHistory.clearCache().then(function() {
       $state.go('app.results');
     });
+  };
+  $scope.goToFavorites = function() {
+    $state.go('app.favorites');
   };
   $scope.searchByAddress = function() {
     $state.go('app.resultsAddress');
