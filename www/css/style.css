@@ -8,6 +8,11 @@
   src: url("../fonts/Artifika-Regular.woff") format('woff');
 }
 
+@font-face {
+  font-family: "Afta-sans";
+  src: url("../fonts/AftaSans.woff") format('woff');
+}
+
 .item-select select
 {
     right: auto;
@@ -15,8 +20,12 @@
     direction: ltr;
 }
 
+.value{
+  left: 2vw;
+}
+
 h3, h2 {
-  font-family: Quicksand;
+  font-family: Afta-sans;
 }
 
 #starFav {
@@ -44,7 +53,7 @@ h3, h2 {
   width: 90vw;
   margin-left: 5vw;
   color: white;
-  font-family: Quicksand;
+  font-family: Afta-sans;
   text-align: center;
   color: white;
 }
