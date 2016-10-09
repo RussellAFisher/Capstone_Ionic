@@ -7,7 +7,11 @@ A lightweight native app to fulfill your curiosities. Curiocity lets you explore
   * Search using GPS
   * Search by Address
   * Information returned in one simple package to reduce data usage
-  
+
+
+[Video Demo](https://www.youtube.com/watch?v=cxN_hplqXXk&feature=youtu.be)
+
+
 #### Curiocity Landing Page:
 ![Landing page](/../screenshots/screenshots/CuriocityLandingPage.png?raw=true "Landing page")
 
@@ -17,5 +21,3 @@ A lightweight native app to fulfill your curiosities. Curiocity lets you explore
 #### Alternatively you can search by address:
 ![Search by Address page](/../screenshots/screenshots/CuriocitySearch.png?raw=true "Search by address")
 
-
-[Video Demo](https://www.youtube.com/watch?v=cxN_hplqXXk&feature=youtu.be)
