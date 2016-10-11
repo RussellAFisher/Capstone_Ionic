@@ -11,6 +11,8 @@ A lightweight native app to fulfill your curiosities. Curiocity lets you explore
 
 [Video Demo](https://www.youtube.com/watch?v=cxN_hplqXXk&feature=youtu.be)
 
+[API Repository](https://github.com/RussellAFisher/CuriocityAPI)
+
 
 #### Curiocity Landing Page:
 ![Landing page](/../screenshots/screenshots/CuriocityLandingPage.png?raw=true "Landing page")
